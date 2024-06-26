@@ -1,20 +1,24 @@
 import { useEffect, useState } from "react";
-import countries from "./api/countries";
+import countryApi from "./api/countryApi";
 import { country } from "./types/countries.type";
+import CountryCard from "./components/CountryCard";
 
 function App() {
-  const [country, setCountry] = useState<country[]>();
+  const [countries, setCountries] = useState<country[]>();
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await countries();
-      setCountry(data);
+      const data = await countryApi();
+      setCountries(data);
     };
     fetchData();
   }, []);
 
-  console.log(country);
-  return <></>;
+  return (
+    <>
+      <CountryCard countries={countries} />
+    </>
+  );
 }
 
 export default App;

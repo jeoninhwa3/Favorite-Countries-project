@@ -16,5 +16,12 @@ export type Country = {
 };
 
 export interface CountriesProps {
-  countries: Country[];
+  countries?: Country[];
+  selectedCountries?: Country[];
+  title: string;
+  onClick: () => void;
 }
+
+export type SelectedCountry = Country & {
+  selected: boolean;
+};

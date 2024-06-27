@@ -1,6 +1,7 @@
-import { countriesProps } from "../types/countries.type";
+import { CountriesProps } from "../types/countries.type";
 
-const CountryCard = ({ countries }: countriesProps) => {
+const CountryCard = ({ countries }: CountriesProps) => {
+  console.log(countries);
   return (
     <>
       <h2>Countries</h2>

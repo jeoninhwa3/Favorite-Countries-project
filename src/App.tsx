@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import countryApi from "./api/countryApi";
-import { country } from "./types/countries.type";
+import { Country } from "./types/countries.type";
 import CountryCard from "./components/CountryCard";
 
 function App() {
-  const [countries, setCountries] = useState<country[]>();
-
+  const [countries, setCountries] = useState<Country[]>();
   useEffect(() => {
     const fetchData = async () => {
       const data = await countryApi();
@@ -16,7 +15,7 @@ function App() {
 
   return (
     <>
-      <CountryCard countries={countries} />
+      <CountryCard countries={countries || []} />
     </>
   );
 }

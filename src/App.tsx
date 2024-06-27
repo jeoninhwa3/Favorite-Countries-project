@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import countryApi from "./api/countryApi";
 import { Country } from "./types/countries.type";
 import CountryCard from "./components/CountryCard";
+import GlobalStyles from "./GlobalStyle";
 
 function App() {
   const [countries, setCountries] = useState<Country[]>();
@@ -15,6 +16,7 @@ function App() {
 
   return (
     <>
+      <GlobalStyles />
       <CountryCard countries={countries || []} />
     </>
   );

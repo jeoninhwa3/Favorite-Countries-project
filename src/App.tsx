@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
 import countryApi from "./api/countryApi";
-import { Country } from "./types/countries.type";
+import { SelectedCountry } from "./types/countries.type";
 import CountryCardWrap from "./components/CountryCardWrap";
 import GlobalStyles from "./GlobalStyle";
 import { AxiosError } from "axios";
 
 function App() {
-  const [countries, setCountries] = useState<Country[]>();
+  const [countries, setCountries] = useState<SelectedCountry[]>();
   const [error, setError] = useState<null | AxiosError>(null);
-  const [selectedCountries, setSelectedCountries] = useState<Country[]>();
 
   const fetchData = async (): Promise<void> => {
     try {
       const data = await countryApi();
-      setCountries(data);
+      const newData = data.map((el) => ({ ...el, selected: false }));
+      setCountries(newData);
     } catch (err) {
       if (err instanceof AxiosError) {
         setError(error);
@@ -32,9 +32,15 @@ function App() {
       <GlobalStyles />
       <CountryCardWrap
         title="Favorite Countries"
-        selectedCountries={selectedCountries || []}
+        isFavorite={true}
+        countries={countries || []}
+        setCountries={setCountries}
       />
-      <CountryCardWrap title="Countries" countries={countries || []} />
+      <CountryCardWrap
+        title="Countries"
+        countries={countries || []}
+        setCountries={setCountries}
+      />
     </>
   );
 }

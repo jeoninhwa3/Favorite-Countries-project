@@ -1,4 +1,4 @@
-import { CountriesProps, Country } from "../types/countries.type";
+import { Country } from "../types/countries.type";
 import styled from "styled-components";
 
 const StItemImg = styled.img`
